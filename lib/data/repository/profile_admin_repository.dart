@@ -19,7 +19,7 @@ class ProfileAdminRepository {
     try {
       final response = await _serviceHttpClient.postWithToken(
         'admin/profile',
-        requestModel.toMap(),
+        requestModel.toJson(),
       );
       final jsonResponse = json.decode(response.body);
       if (response.statusCode == 201) {
