@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:restapi/core/core.dart';
 import 'package:restapi/data/model/response/buyer/buyer_profile_reponse_model.dart';
+import 'package:restapi/presentation/buyer/home/buyer_home_screen.dart';
 
 class ProfileViewBuyer extends StatelessWidget {
   final Data profile;

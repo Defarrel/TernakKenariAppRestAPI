@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:restapi/presentation/buyer/profile/bloc/profile_buyer_bloc.dart';
+import 'package:restapi/presentation/buyer/profile/widget/profile_buyer_form.dart';
+import 'package:restapi/presentation/buyer/profile/widget/profile_view_buyer.dart';
 
 class BuyerProfileScreen extends StatefulWidget {
   const BuyerProfileScreen({super.key});
