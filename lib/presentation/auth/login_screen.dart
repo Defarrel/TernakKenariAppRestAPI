@@ -97,13 +97,13 @@ class _LoginScreenState extends State<LoginScreen> {
                         context,
                       ).showSnackBar(SnackBar(content: Text(state.error)));
                     } else if (state is LoginSuccess) {
-                      final role = state.responseModel.user?.role
-                        ?.toLowerCase();
+                      final role =
+                          state.responseModel.user?.role?.toLowerCase();
                       if (role == 'admin') {
-                        context.pushAndRemoveUntil(
-                          const AdminConfirmScreen(),
-                          (route) => false,
-                        );
+                        // context.pushAndRemoveUntil(
+                        //   const AdminConfirmScreen(),
+                        //   (route) => false,
+                        // );
                       } else if (role == 'buyer') {
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(content: Text(state.responseModel.message!)),
@@ -121,19 +121,20 @@ class _LoginScreenState extends State<LoginScreen> {
                   },
                   builder: (context, state) {
                     return Button.filled(
-                      onPressed: state is LoginLoading
-                          ? null
-                          : () {
-                              if (_key.currentState!.validate()) {
-                                final request = LoginRequestModel(
-                                  email: emailController.text,
-                                  password: passwordController.text,
-                                );
-                                context
-                                    .read<LoginBloc>()
-                                    .add(LoginEvent.login(request));
-                              }
-                            },
+                      onPressed:
+                          state is LoginLoading
+                              ? null
+                              : () {
+                                if (_key.currentState!.validate()) {
+                                  final request = LoginRequestModel(
+                                    email: emailController.text,
+                                    password: passwordController.text,
+                                  );
+                                  context.read<LoginBloc>().add(
+                                    LoginRequested(requestModel: request),
+                                  );
+                                }
+                              },
                       label: state is LoginLoading ? 'Memuat...' : 'Masuk',
                     );
                   },
@@ -150,10 +151,11 @@ class _LoginScreenState extends State<LoginScreen> {
                       TextSpan(
                         text: 'Daftar disini!',
                         style: TextStyle(color: AppColors.primary),
-                        recognizer: TapGestureRecognizer()
-                          ..onTap = () {
-                            context.push(const RegisterScreen());
-                          },
+                        recognizer:
+                            TapGestureRecognizer()
+                              ..onTap = () {
+                                context.push(const RegisterScreen());
+                              },
                       ),
                     ],
                   ),
